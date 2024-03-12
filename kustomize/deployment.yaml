@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: podinfo
+  name: medusa
 spec:
   minReadySeconds: 3
   revisionHistoryLimit: 5
@@ -12,17 +12,17 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: podinfo
+      app: medusa
   template:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9797"
       labels:
-        app: podinfo
+        app: medusa
     spec:
       containers:
-      - name: podinfod
+      - name: medusa
         image: ghcr.io/stefanprodan/podinfo:6.6.0
         imagePullPolicy: IfNotPresent
         ports:
